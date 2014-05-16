@@ -1,0 +1,135 @@
+/* THE WRAPPER */
+
+body {
+	font-family: Helvetica, sans-serif;
+	font-size: 12pt;
+	background: #ddd;
+}
+
+#wrapper {
+	position: relative;
+	width: 25em;
+	border: 1px solid black;
+	margin: 5em auto auto auto;
+	padding: 1em;
+	border-radius: 0.5em;
+	background: white;
+}
+
+h1 {
+	margin-top: 0;
+}
+
+/* THE FORM */
+
+form {
+	margin: 0 auto 0 auto;
+}
+
+form > * {
+	display: inline-block;
+	width: 30%;
+	margin-right: 2.5%; 
+}
+
+div.field label {
+	text-transform: uppercase;
+	font-size: 60%;
+	display: block;
+	font-weight: bold;
+}
+
+div.field input {
+	font-size: 110%;
+	width: 100%;
+}
+
+form button {
+	font-size: 110%;
+	width: 33%;
+	margin-right: 0;
+}
+
+/* THE FRAGMENTS */
+
+#response ul {
+	padding: 0;
+	width: inherit;
+	margin: 0px;
+}
+
+li.fragment, #wrapper {
+	box-shadow: 0px 2px 1px 0px rgba(50, 50, 50, 0.75);
+}
+
+li.fragment {
+	list-style-type: none;
+	display: block;
+	margin-top: 1.3em;
+}
+
+li.fragment > table {
+	border: 1px solid black;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+li.fragment td, li.fragment th {
+	border-right: 1px dashed black;
+	width: 1em;
+}
+
+li.fragment th {
+	text-transform: uppercase;
+	font-size: 60%;
+	font-weight: bold;
+	background: #ccc;
+	padding: 0.4em;
+}
+
+li.fragment td {
+	text-align: center;
+	padding: 0.4em 0.5em 0.4em 0.5em;
+	min-width: 2.2em;
+}
+
+li.fragment th:first-child {
+	min-width: 0;
+	padding: 0.4em 0 0.4em 0.4em;
+}
+
+li.fragment td:first-child {
+	min-width: 0;
+	padding: 0;
+}
+
+li.fragment td:last-child, li.fragment th:last-child {
+	border-right: none;
+	padding: 0 2em 0 2em; 
+	width: auto;
+}
+
+/* THE CREDITS */
+
+#credits {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 80%;
+	margin: 0 1em 1em auto;
+	text-align: right;
+}
+
+#credits p {
+	margin: 0 0 0.1em 0.5em;
+}
+
+#credits a {
+	text-decoration: none;
+	font-weight: 600;
+	color: #333;
+}
+
+#credits a:hover{
+	text-decoration: underline;
+}

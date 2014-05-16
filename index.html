@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="ipfCalc">
+<head>
+	<title>IP Fragmentation Calculator</title>
+	<link rel="stylesheet" type="text/css" href="style/look.css">
+</head>
+<body>
+	<div ng-controller="CalculateController" id="wrapper">
+		<h1>Fragmentation Calculator</h1>
+		<!-- the form -->
+		<form name="form">
+			<div class="field">
+				<label for="dataSize">Data Size</label>
+				<input type="number" ng-model="data.dataSize" name="dataSize" required>
+			</div>
+
+			<div class="field">
+				<label for="mtuSize">MTU</label>
+				<input type="number" min="28" ng-model="data.mtuSize" name="mtuSize" required>
+			</div>
+			<button ng-click="calculate(data)" ng-disabled="form.$invalid">Calculate</button>
+		</form>
+		<div id="response">
+			<ul>
+				<!-- the fragment representation -->
+				<li class="fragment" ng-repeat="fragment in fragments">
+					<table>
+						<tr>
+							<th>{{ $index }}</th>
+							<th>Length</th>
+							<th>ID</th>
+							<th>Flag</th>
+							<th>Offset</th>
+							<th></th>
+						</tr>
+						<tr>
+							<td></td>
+							<td>{{ fragment.length }}</td>
+							<td>X</td>
+							<td>{{ fragment.flag }}</td>
+							<td>{{ fragment.offset }}</td>
+							<td>...</td>
+						</tr>
+					</table>
+				</li>
+				<!-- end fragment representation -->
+			</ul>
+		</div>
+	</div>
+	<!-- The credits -->
+	<div id="credits">
+		<p>Created by <a href="http://github.com/fixmycode">Pablo Albornoz</a></p>
+		<p>Help improve this proyect on <a href="http://github.com/fixmycode/IPFCalc/">Github</a></p>
+		<p>Learn more about <a href="http://en.wikipedia.org/wiki/IPv4#Fragmentation_and_reassembly">IPv4 fragmentation</a></p>
+	</div>
+	<!-- The scripts -->
+	<script type="text/javascript" src="app/angular.min.js"></script>
+	<script type="text/javascript" src="app/app.js"></script>
+</body>
+</html>
