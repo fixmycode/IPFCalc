@@ -5,7 +5,10 @@ var ipfCalc = angular.module('ipfCalc', []);
 ipfCalc.controller('CalculateController', function($scope) {
 	//initial values
 	$scope.fragments = [];
-	$scope.data = {mtuSize: 1500};
+	$scope.data = {
+		dataSize: 4000, 
+		mtuSize: 1500
+	};
 
 	//when you click "Calculate"
 	$scope.calculate = function(data){
@@ -13,16 +16,16 @@ ipfCalc.controller('CalculateController', function($scope) {
 		$scope.fragments = [];
 		var headerSize = 20;
 		var remaining = data.dataSize;
-		var maxSize = data.mtuSize - headerSize;
+		var maxSize = data.mtuSize;
 		var flag = 1;
 
 		//While data doesn't fit the MTU...
 		while(remaining > 0){
 			var length = 0;
 			if(maxSize < remaining){
-				length = maxSize;
+				length = maxSize - headerSize;
 			} else {
-				length = remaining;
+				length = remaining - headerSize;
 				flag = 0;
 			}
 
@@ -34,7 +37,7 @@ ipfCalc.controller('CalculateController', function($scope) {
 			})
 
 			//until everything has been sent.
-			remaining -= maxSize;
+			remaining -= maxSize - headerSize;
 		}
 	};
 });
