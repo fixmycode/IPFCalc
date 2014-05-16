@@ -7,25 +7,27 @@ ipfCalc.controller('CalculateController', function($scope) {
 	$scope.fragments = [];
 	$scope.data = {
 		dataSize: 4000, 
-		mtuSize: 1500
+		mtuSize: 1500,
+		headerSize: 20
 	};
 
 	//when you click "Calculate"
 	$scope.calculate = function(data){
 		//Initializing the data...
 		$scope.fragments = [];
-		var headerSize = 20;
-		var remaining = data.dataSize;
-		var maxSize = data.mtuSize;
+		var headerSize = data.headerSize;
+		var remaining = data.dataSize - headerSize;
+		var maxSize = data.mtuSize - headerSize;
 		var flag = 1;
+		var offset = 0;
 
 		//While data doesn't fit the MTU...
 		while(remaining > 0){
 			var length = 0;
 			if(maxSize < remaining){
-				length = maxSize - headerSize;
+				length = maxSize;
 			} else {
-				length = remaining - headerSize;
+				length = remaining;
 				flag = 0;
 			}
 
@@ -33,11 +35,12 @@ ipfCalc.controller('CalculateController', function($scope) {
 			$scope.fragments.push({
 				length: length,
 				flag: flag,
-				offset: ~~((data.dataSize-remaining)/8), 
+				offset: offset, 
 			})
 
 			//until everything has been sent.
-			remaining -= maxSize - headerSize;
+			remaining -= length;
+			offset = ~~(((offset*8)+length)/8);
 		}
 	};
 });
