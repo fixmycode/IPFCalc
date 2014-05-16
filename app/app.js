@@ -2,6 +2,24 @@
 
 var ipfCalc = angular.module('ipfCalc', []);
 
+ipfCalc.directive('mtuValid', function(){
+	return {
+		require: 'ngModel',
+		link: function(scope, elm, attrs, ctrl) {
+			ctrl.$parsers.unshift(function(viewValue) {
+				var value = viewValue - scope.data.headerSize;
+				if(value > 0 && value % 8 == 0){
+					ctrl.$setValidity('mtuValid', true);
+					return viewValue;
+				} else {
+					ctrl.$setValidity('mtuValid', false);
+					return undefined;
+				}
+			});
+		}
+	};
+});
+
 ipfCalc.controller('CalculateController', function($scope) {
 	//initial values
 	$scope.fragments = [];
