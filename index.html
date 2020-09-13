@@ -26,12 +26,12 @@
 				<li class="fragment" ng-repeat="fragment in fragments">
 					<table>
 						<tr>
-							<th>{{ $index }}</th>
+							<th>{{ $index }}<span class="offset start">0</span></th>
 							<th>Length</th>
 							<th>ID</th>
 							<th>Flag</th>
-							<th>Offset</th>
-							<th></th>
+							<th>Offset<span class="offset middle">{{data.headerSize}}</span></th>
+							<th><span class="offset end">{{fragment.length + data.headerSize}}</span></th>
 						</tr>
 						<tr>
 							<td></td>
