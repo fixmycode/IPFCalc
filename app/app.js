@@ -2,24 +2,6 @@
 
 var ipfCalc = angular.module('ipfCalc', []);
 
-ipfCalc.directive('mtuValid', function(){
-	return {
-		require: 'ngModel',
-		link: function(scope, elm, attrs, ctrl) {
-			ctrl.$parsers.unshift(function(viewValue) {
-				var value = viewValue - scope.data.headerSize;
-				if(value > 0 && value % 8 == 0){
-					ctrl.$setValidity('mtuValid', true);
-					return viewValue;
-				} else {
-					ctrl.$setValidity('mtuValid', false);
-					return undefined;
-				}
-			});
-		}
-	};
-});
-
 ipfCalc.controller('CalculateController', function($scope) {
 	//initial values
 	$scope.fragments = [];
@@ -36,6 +18,7 @@ ipfCalc.controller('CalculateController', function($scope) {
 		var headerSize = data.headerSize;
 		var remaining = data.dataSize - headerSize;
 		var maxSize = data.mtuSize - headerSize;
+		var maxPayload = maxSize - (maxSize % 8);
 		var flag = 1;
 		var offset = 0;
 
@@ -43,7 +26,7 @@ ipfCalc.controller('CalculateController', function($scope) {
 		while(remaining > 0){
 			var length = 0;
 			if(maxSize < remaining){
-				length = maxSize;
+				length = maxPayload;
 			} else {
 				length = remaining;
 				flag = 0;

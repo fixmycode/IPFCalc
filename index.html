@@ -10,13 +10,13 @@
 		<!-- the form -->
 		<form name="form">
 			<div class="field">
-				<label for="dataSize">Data Size</label>
-				<input type="number" min="{{ data.headerSize + 1}}" ng-model="data.dataSize" name="dataSize" required>
+				<label for="dataSize">Data Size (Bytes)</label>
+				<input type="number" min="28" ng-model="data.dataSize" name="dataSize" required>
 			</div>
 
 			<div class="field">
-				<label for="mtuSize">MTU</label>
-				<input type="number" ng-model="data.mtuSize" name="mtuSize" mtu-valid required>
+				<label for="mtuSize">MTU (Bytes)</label>
+				<input type="number" max="1500" min="68" ng-model="data.mtuSize" name="mtuSize" required>
 			</div>
 			<button ng-click="calculate(data)" ng-disabled="form.$invalid">Calculate</button>
 		</form>
