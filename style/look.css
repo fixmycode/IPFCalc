@@ -8,9 +8,9 @@ body {
 
 #wrapper {
 	position: relative;
-	width: 25em;
-	border: 1px solid black;
-	margin: 5em auto auto auto;
+	max-width: 25em;
+	border: 1px solid rgba(0, 0, 0, 0.507);
+	margin: 1em auto auto auto;
 	padding: 1em;
 	border-radius: 0.5em;
 	background: white;
@@ -18,18 +18,22 @@ body {
 
 h1 {
 	margin-top: 0;
+	font-size: 100%;
 }
 
 /* THE FORM */
 
 form {
-	margin: 0 auto 0 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: stretch;
+	gap: 5px;
 }
 
 form > * {
-	display: inline-block;
-	width: 30%;
-	margin-right: 2.5%; 
+	flex: 1;
 }
 
 div.field label {
@@ -39,17 +43,9 @@ div.field label {
 	font-weight: bold;
 }
 
-div.field input {
-	font-size: 110%;
-	width: 100%;
+div.field input.ng-invalid {
+	color: red;
 }
-
-form button {
-	font-size: 110%;
-	width: 33%;
-	margin-right: 0;
-}
-
 /* THE FRAGMENTS */
 
 #response ul {
@@ -59,7 +55,7 @@ form button {
 }
 
 li.fragment, #wrapper {
-	box-shadow: 0px 2px 1px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: 0px 1px 1px 1px rgba(50, 50, 50, 0.432);
 }
 
 li.fragment {
@@ -137,16 +133,13 @@ li.fragment th:last-of-type {
 /* THE CREDITS */
 
 #credits {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	font-size: 80%;
-	margin: 0 1em 1em auto;
-	text-align: right;
+	font-size: 11px;
+	margin: 2em 1em 1em auto;
+	text-align: center;
 }
 
 #credits p {
-	margin: 0 0 0.1em 0.5em;
+	margin: 0;
 }
 
 #credits a {
