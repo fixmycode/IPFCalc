@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html ng-app="ipfCalc">
 <head>
-	<title>IP Fragmentation Calculator</title>
-	<link rel="stylesheet" type="text/css" href="style/look.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Fragmentation Calculator</title>
+    <link rel="stylesheet" type="text/css" href="style/look.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div ng-controller="CalculateController" id="wrapper">
-		<h1>Fragmentation Calculator</h1>
-		<!-- the form -->
-		<form name="form">
-			<div class="field">
-				<label for="dataSize">Data Size (Bytes)</label>
-				<input type="number" min="28" ng-model="data.dataSize" name="dataSize" required>
-			</div>
+    <div ng-controller="CalculateController" id="wrapper">
+        <h1>Fragmentation Calculator</h1>
+        <!-- the form -->
+        <form name="form">
+            <div class="field">
+                <label for="dataSize">Data Size/Network Payload (Bytes)</label>
+                <input type="number" min="28" ng-model="data.dataSize" name="dataSize" required>
+            </div>
 
-			<div class="field">
-				<label for="mtuSize">MTU (Bytes)</label>
-				<input type="number" max="1500" min="68" ng-model="data.mtuSize" name="mtuSize" required>
-			</div>
-			<button ng-click="calculate(data)" ng-disabled="form.$invalid">Calculate</button>
-		</form>
-		<div id="response">
-			<ul>
-				<!-- the fragment representation -->
-				<li class="fragment" ng-repeat="fragment in fragments">
-					<table>
-						<tr>
-							<th>{{ $index }}<span class="offset start">0</span></th>
-							<th>Length</th>
-							<th>ID</th>
-							<th>Flag</th>
-							<th>Offset<span class="offset middle">{{data.headerSize}}</span></th>
-							<th><span class="offset end">{{fragment.length + data.headerSize}}</span></th>
-						</tr>
-						<tr>
-							<td></td>
-							<td>{{ fragment.length }}</td>
-							<td>X</td>
-							<td>{{ fragment.flag }}</td>
-							<td>{{ fragment.offset }}</td>
-							<td>...</td>
-						</tr>
-					</table>
-				</li>
-				<!-- end fragment representation -->
-			</ul>
-		</div>
-	</div>
-	<!-- The credits -->
-	<div id="credits">
-		<p>Created by <a href="http://github.com/fixmycode">Pablo Albornoz</a></p>
-		<p>Help improve this project on <a href="http://github.com/fixmycode/IPFCalc/">GitHub</a></p>
-		<p>Learn more about <a href="http://en.wikipedia.org/wiki/IPv4#Fragmentation_and_reassembly">IPv4 fragmentation</a></p>
-	</div>
-	<!-- The scripts -->
-	<script type="text/javascript" src="app/angular.min.js"></script>
-	<script type="text/javascript" src="app/app.js"></script>
+            <div class="field">
+                <label for="mtuSize">MTU (Bytes)</label>
+                <input type="number" max="1500" min="68" ng-model="data.mtuSize" name="mtuSize" required>
+            </div>
+
+            <!-- New input field for header size -->
+            <div class="field">
+                <label for="headerSize">Header Size (Bytes)</label>
+                <input type="number" min="0" ng-model="data.headerSize" name="headerSize" required>
+            </div>
+
+            <button ng-click="calculate(data)" ng-disabled="form.$invalid">Calculate</button>
+        </form>
+        <div id="response">
+            <ul>
+                <!-- the fragment representation -->
+                <li class="fragment" ng-repeat="fragment in fragments">
+                    <table>
+                        <tr>
+                            <th>{{ $index }}<span class="offset start">0</span></th>
+                            <th>Length</th>
+                            <th>ID</th>
+                            <th>Flag</th>
+                            <th>Offset<span class="offset middle">{{data.headerSize}}</span></th>
+                            <th><span class="offset end">{{fragment.length + data.headerSize}}</span></th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>{{ fragment.length }}</td>
+                            <td>X</td>
+                            <td>{{ fragment.flag }}</td>
+                            <td>{{ fragment.offset }}</td>
+                            <td>...</td>
+                        </tr>
+                    </table>
+                </li>
+                <!-- end fragment representation -->
+            </ul>
+        </div>
+    </div>
+    <!-- The credits -->
+    <div id="credits">
+        <p>Created by <a href="http://github.com/fixmycode">Pablo Albornoz</a></p>
+        <p>Help improve this project on <a href="http://github.com/fixmycode/IPFCalc/">GitHub</a></p>
+        <p>Learn more about <a href="http://en.wikipedia.org/wiki/IPv4#Fragmentation_and_reassembly">IPv4 fragmentation</a></p>
+    </div>
+    <!-- The scripts -->
+    <script type="text/javascript" src="app/angular.min.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
 </body>
 </html>
